@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Verificación de seguridad</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #202124;
+  }
+
+  p {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 25px;
+  }
+
+  label {
+    font-size: 14px;
+    color: #202124;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #1a73e8;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #1669c1;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- PASO 1 -->
+  <div id="step-email">
+    <h1>Actividad sospechosa detectada</h1>
+    <p>Hemos detectado un intento de acceso no autorizado.  
+       Confirma tu correo para proteger tu cuenta.</p>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+
+    <div class="actions">
+      <button onclick="goToPassword()">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- PASO 2 -->
+  <div id="step-password" class="hidden">
+    <h1>Verifica tu identidad</h1>
+    <p>Introduce tu contraseña para continuar con la verificación.</p>
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" placeholder="Contraseña" required>
+
+    <div class="actions">
+      <button onclick="finish()">Verificar</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function goToPassword() {
+    const email = document.getElementById("email").value;
+    if (email === "") {
+      alert("Introduce un correo electrónico");
+      return;
+    }
+    document.getElementById("step-email").classList.add("hidden");
+    document.getElementById("step-password").classList.remove("hidden");
+  }
+
+  function finish() {
+    const password = document.getElementById("password").value;
+    if (password === "") {
+      alert("Introduce la contraseña");
+      return;
+    }
+    alert("Verificación completada (demo)");
+  }
+</script>
+
+</body>
+</html>
+
